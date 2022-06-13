@@ -1,12 +1,14 @@
 const EXPECTED_GAME_STATUS = "The race is on! Type the text below:";
 
 module.exports.play = async (page) => {
+  await page.waitForTimeout(2000);
+  await getText(page);
   await waitForGameToStart(page);
-  console.log("shit is on!");
+  const text = await getText(page);
+  console.log(`final: ${text}`);
 };
 
 const waitForGameToStart = async (page) => {
-  await page.waitForTimeout(1000);
   console.log("Waiting for game to begin");
   const gameStatusLabel = await page.$(".gameStatusLabel");
   let gameStatus = "";
@@ -17,4 +19,17 @@ const waitForGameToStart = async (page) => {
     );
     await page.waitForTimeout(50);
   }
+};
+
+const getText = async (page) => {
+  const elements = await page.$x('//span[@unselectable="on"]');
+  let text = "";
+
+  for (let element of elements) {
+    text += await page.evaluate(
+      (elementHandler) => elementHandler.textContent,
+      element
+    );
+  }
+  return text;
 };
