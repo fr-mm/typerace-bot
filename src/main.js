@@ -8,6 +8,9 @@ const main = async () => {
 
   const captcha = require("./captcha.js");
   await captcha.waitForManualCompletion(page);
+
+  const navigateTo = require("./navigateTo.js");
+  await navigateTo.practiceYourserf(page);
 };
 
 main();

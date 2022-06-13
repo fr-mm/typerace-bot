@@ -4,6 +4,7 @@ const LAUNCH_OPTIONS = {
 };
 
 module.exports.build = async () => {
+  console.log("Building page");
   const puppeteer = require("puppeteer-extra");
   const StealthPlugin = require("puppeteer-extra-plugin-stealth");
   puppeteer.use(StealthPlugin());
