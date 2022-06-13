@@ -11,6 +11,9 @@ const main = async () => {
 
   const navigateTo = require("./navigateTo.js");
   await navigateTo.practiceYourserf(page);
+
+  const game = require("./game.js");
+  await game.play(page);
 };
 
 main();
